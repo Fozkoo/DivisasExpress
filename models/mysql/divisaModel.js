@@ -1,8 +1,9 @@
-import { Sequelize } from "sequelize";
+import mysql from "mysql2/promise";
+import { Sequelize, DataTypes } from "sequelize";
 
 export const sequelize = new Sequelize('divisas', 'root', '1234', {
-
     host: 'localhost',
+    port: 3307,
     dialect: 'mysql',
     logging: false,
 });
@@ -10,28 +11,28 @@ export const sequelize = new Sequelize('divisas', 'root', '1234', {
 
 export const DivisaModel = sequelize.define('divisas', {
     id: {
-        type: Sequelize.INTEGER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
     nombre: {
-        type: Sequelize.STRING(15),
+        type: DataTypes.STRING(15),
         allowNull: false
     },
     moneda: {
-        type: sequelize.STRING(15),
+        type: DataTypes.STRING(15),
         allowNull: false
     },
     precio: {
-        type: Sequelize.DOUBLE,
+        type: DataTypes.DOUBLE,
         allowNull: false
     },
     precioMaximo: {
-        type: Sequelize.DOUBLE,
+        type: DataTypes.DOUBLE,
         allowNull: false
     },
     precioMinimo: {
-        type: Sequelize.DOUBLE,
+        type: DataTypes.DOUBLE,
         allowNull: false
     }
 }, {
