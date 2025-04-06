@@ -8,7 +8,7 @@ export const createApp = ({divisaModel}) => {
 
     app.disable('x-powered-by');
     app.use(express.json());   
-    app.use('/divisas', divisaRouter({divisaModel}));
+    app.use('/divisas', createDivisaRouter({ divisaModel }));
 
     const PORT = process.env.PORT ?? 1234;
 
