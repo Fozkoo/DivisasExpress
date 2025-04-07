@@ -8,6 +8,17 @@ export class DivisaController{
     }
 
 
+    createDivisa = async (req, res) => {
+        const { nombre, moneda, precio, preciomin, preciomax } = req.body;
+        try {
+            const newDivisa = await this.DivisaModel.create({ nombre, moneda, precio, preciomin, preciomax });
+            res.status(201).json(newDivisa);
+        } catch (error) {
+            console.error('Error al crear la divisa:', error);
+            res.status(500).json({ error: 'Error al crear la divisa' });
+        }
+    }
+
     getDivisaById = async (req, res) => {
         const { id } = req.params;
         try {
