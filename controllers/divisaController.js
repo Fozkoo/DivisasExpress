@@ -42,4 +42,21 @@ export class DivisaController{
             res.status(500).json({ error: 'Error al obtener las divisas' });
         }
     }
+
+    deleteDivisaById = async (req, res) => {
+        const { id } = req.params;
+        try {
+            const divisa = await this.DivisaModel.findOne({ where: { id } });
+            if (!divisa) {
+                return res.status(404).json({ error: 'Divisa no encontrada' });
+            }
+            await divisa.destroy();
+            res.json({ message: 'Divisa eliminada correctamente' });
+        } catch (error) {
+            console.error('Error al eliminar la divisa:', error);
+            res.status(500).json({ error: 'Error al eliminar la divisa' });
+        }
+    }
+
+
 }
