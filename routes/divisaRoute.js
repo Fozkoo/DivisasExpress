@@ -10,5 +10,6 @@ export const createDivisaRouter = ({ divisaModel }) => {
     divisaRouter.get('/:id', (req, res) => divisaController.getDivisaById(req,res));
     divisaRouter.post('/', (req, res) => divisaController.createDivisa(req,res));
     divisaRouter.delete('/:id', (req, res) => divisaController.deleteDivisaById(req,res));
+    divisaRouter.patch('/:id', (req, res) => divisaController.patchDivisaById(req,res));
     return divisaRouter;
 }

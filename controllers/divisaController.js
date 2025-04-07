@@ -58,5 +58,21 @@ export class DivisaController{
         }
     }
 
+    patchDivisaById = async (req, res) => {
+        const { id } = req.params;
+        const { nombre, moneda, precio, preciomin, preciomax } = req.body;
+        try {
+            const divisa = await this.DivisaModel.findOne({ where: { id } });
+            if (!divisa) {
+                return res.status(404).json({ error: 'Divisa no encontrada' });
+            }
+            await divisa.update({ nombre, moneda, precio, preciomin, preciomax });
+            res.json(divisa);
+        } catch (error) {
+            console.error('Error al actualizar la divisa:', error);
+            res.status(500).json({ error: 'Error al actualizar la divisa' });
+        }
+    }
+
 
 }
